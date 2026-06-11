@@ -44,7 +44,6 @@ Open the URL displayed in the terminal (usually http://localhost:5173).
 * Income and Expense Tracking
 * Financial Goal Management
 * Reports and Analytics
-* AI-Powered Financial Recommendations
 * AI Chat Assistant
 
 ## Database
@@ -58,23 +57,61 @@ Firebase Authentication is used for:
 * Email/Password Login
 * Google Sign-In
 
-## Test Cases
+## Build Android APK
 
-1. Create a new account.
-2. Login using Email/Password.
-3. Login using Google Sign-In.
-4. Add Income Transaction.
-5. Add Expense Transaction.
-6. Create Financial Goal.
-7. View Dashboard Analytics.
-8. View Reports.
-9. Use AI Assistant.
-10. Logout and Login again to verify data persistence.
+### Prerequisites
 
-## Project Structure
+* Node.js
+* Android Studio
+* Android SDK
+* Java JDK
 
-* Frontend: React.js + Vite
-* Backend Services: Firebase Authentication and Firestore
-* AI Service: Google Gemini API
-* Mobile Platform: Capacitor Android
+### Install Dependencies
 
+```bash
+npm install
+```
+
+### Build React Application
+
+```bash
+npm run build
+```
+
+### Sync Capacitor
+
+```bash
+npx cap sync android
+```
+
+### Open Android Studio
+
+```bash
+npx cap open android
+```
+
+### Generate APK
+
+1. Android Studio → **Build**
+2. **Build Bundle(s) / APK(s)**
+3. **Build APK(s)**
+
+After the build completes, click:
+
+```text
+locate
+```
+
+or find the APK at:
+
+```text
+android/app/build/outputs/apk/debug/app-debug.apk
+```
+
+### Install APK
+
+Copy `app-debug.apk` to an Android phone and install it.
+
+### Google Sign-In
+
+The project already includes Firebase configuration (`google-services.json`). Ensure Firebase Authentication and Firestore are enabled in the Firebase project.
