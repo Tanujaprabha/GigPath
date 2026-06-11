@@ -15,7 +15,18 @@ Install:
 
 * Node.js (v18 or later)
 * npm
+  
+To enable AI features:
 
+1. Create a Gemini API key from Google AI Studio.
+2. Create a .env file in the project root.
+3. Add:
+
+VITE_GEMINI_API_KEY=YOUR_API_KEY
+
+4. Run:
+
+npm run dev
 ## Clone Repository
 
 ```bash
