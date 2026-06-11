@@ -126,6 +126,7 @@ export default function LoginPage() {
         <label className="field">
           <span>Email</span>
           <input
+            id="email"
             required
             type="email"
             name="email"
@@ -138,6 +139,7 @@ export default function LoginPage() {
         <label className="field">
           <span>Password</span>
           <input
+            id="password"
             required
             type="password"
             name="password"
@@ -148,6 +150,7 @@ export default function LoginPage() {
         </label>
 
         <button 
+          id="login-button"
           type="submit" 
           className="button button--primary button--block"
           disabled={loading}

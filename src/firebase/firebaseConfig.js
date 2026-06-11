@@ -8,7 +8,6 @@ const firebaseConfig = {
     storageBucket: "gigpath.firebasestorage.app",
     messagingSenderId: "594068319655",
     appId: "1:594068319655:web:6c068158465e6a54ad1a82",
-
 };
 
 const app = initializeApp(firebaseConfig);
