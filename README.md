@@ -1,16 +1,80 @@
-# React + Vite
+# GigPath – AI-Powered Financial Guidance Platform for Gig Workers
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Technologies Used
 
-Currently, two official plugins are available:
+* React.js
+* Vite
+* Firebase Authentication
+* Cloud Firestore
+* Google Gemini AI API
+* Capacitor Android
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Prerequisites
 
-## React Compiler
+Install:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* Node.js (v18 or later)
+* npm
 
-## Expanding the ESLint configuration
+## Clone Repository
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+git clone https://github.com/Tanujaprabha/GigPath.git
+cd GigPath
+```
+
+## Install Dependencies
+
+```bash
+npm install
+```
+
+## Run Application
+
+```bash
+npm run dev
+```
+
+Open the URL displayed in the terminal (usually http://localhost:5173).
+
+## Features
+
+* User Authentication
+* Google Sign-In
+* Income and Expense Tracking
+* Financial Goal Management
+* Reports and Analytics
+* AI-Powered Financial Recommendations
+* AI Chat Assistant
+
+## Database
+
+Cloud Firestore is used as the database.
+
+## Authentication
+
+Firebase Authentication is used for:
+
+* Email/Password Login
+* Google Sign-In
+
+## Test Cases
+
+1. Create a new account.
+2. Login using Email/Password.
+3. Login using Google Sign-In.
+4. Add Income Transaction.
+5. Add Expense Transaction.
+6. Create Financial Goal.
+7. View Dashboard Analytics.
+8. View Reports.
+9. Use AI Assistant.
+10. Logout and Login again to verify data persistence.
+
+## Project Structure
+
+* Frontend: React.js + Vite
+* Backend Services: Firebase Authentication and Firestore
+* AI Service: Google Gemini API
+* Mobile Platform: Capacitor Android
+
