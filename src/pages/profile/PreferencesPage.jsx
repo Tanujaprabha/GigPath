@@ -63,14 +63,7 @@ export default function PreferencesPage() {
         )}
 
         <form className="form-grid" onSubmit={handleSubmit}>
-          <label className="field">
-            <span>Language</span>
-            <select name="language" value={form.language || 'en'} onChange={handleChange}>
-              <option value="en">English</option>
-              <option value="ta">Tamil (தமிழ்)</option>
-              <option value="hi">Hindi (हिन्दी)</option>
-            </select>
-          </label>
+
 
           <label className="field">
             <span>Currency</span>

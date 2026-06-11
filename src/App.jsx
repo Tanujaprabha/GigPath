@@ -36,7 +36,6 @@ import ProfilePage from './pages/profile/ProfilePage'
 import SecurityPage from './pages/profile/SecurityPage'
 import SettingsPage from './pages/profile/SettingsPage'
 import NotificationsPage from './pages/profile/NotificationsPage'
-import LanguageSelectionPage from './pages/shared/LanguageSelectionPage'
 import NotFoundPage from './pages/shared/NotFoundPage'
 import SplashScreen from './pages/shared/SplashScreen'
 import WelcomeScreen from './pages/shared/WelcomeScreen'
@@ -45,14 +44,6 @@ function PublicOnlyRoute() {
   const { isAuthenticated } = useAppContext()
   if (isAuthenticated) {
     return <Navigate to="/app/dashboard" replace />
-  }
-  return <Outlet />
-}
-
-function LanguageGuard() {
-  const languageSelected = localStorage.getItem('gigpath_language_selected') === 'true'
-  if (!languageSelected) {
-    return <Navigate to="/select-language" replace />
   }
   return <Outlet />
 }
@@ -71,9 +62,6 @@ export default function App() {
       <RouteLogger />
       <Routes>
         <Route path="/" element={<SplashScreen />} />
-      <Route path="/select-language" element={<LanguageSelectionPage />} />
-      
-      <Route element={<LanguageGuard />}>
         <Route path="/welcome" element={<WelcomeScreen />} />
 
         <Route element={<PublicOnlyRoute />}>
@@ -135,7 +123,6 @@ export default function App() {
         </Route>
 
         <Route path="*" element={<NotFoundPage />} />
-      </Route>
       </Routes>
     </>
   )
