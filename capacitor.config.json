@@ -1,0 +1,10 @@
+{
+  "appId": "com.gigpath.app",
+  "appName": "GigPath",
+  "webDir": "dist",
+  "plugins": {
+    "FirebaseAuthentication": {
+      "providers": ["google.com"]
+    }
+  }
+}

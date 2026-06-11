@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">GigPath</string>
+    <string name="title_activity_main">GigPath</string>
+    <string name="package_name">com.gigpath.app</string>
+    <string name="custom_url_scheme">com.gigpath.app</string>
+    <string name="server_client_id">594068319655-r8qsdll7pvejoi7iu4fd18j72olbqop1.apps.googleusercontent.com</string>
+</resources>

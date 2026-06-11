@@ -1,0 +1,130 @@
+/* ... existing styles above ... */
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  background: var(--bg);
+}
+
+.app-navbar {
+  display: none;
+  height: 72px;
+  padding: 0 24px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hamburger-btn, .sidebar-close-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hamburger-btn:hover, .sidebar-close-btn:hover {
+  background: var(--bg-strong);
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+}
+
+.app-sidebar {
+  width: 304px;
+  min-width: 304px;
+  padding: 26px 22px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  border-right: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.74);
+  backdrop-filter: blur(24px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 1000;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.3);
+  backdrop-filter: blur(4px);
+  z-index: 950;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.app-main {
+  flex: 1;
+  margin-left: 304px;
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.is-sidebar-closed .app-main {
+  margin-left: 0 !important;
+  width: 100%;
+  max-width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .app-shell {
+    flex-direction: column;
+  }
+
+  .app-navbar {
+    display: flex;
+  }
+
+  .app-sidebar {
+    transform: translateX(-100%);
+    box-shadow: 20px 0 50px rgba(0, 0, 0, 0.1);
+    background: white;
+  }
+
+  .app-sidebar.is-open {
+    transform: translateX(0);
+  }
+
+  .sidebar-close-btn {
+    display: grid;
+  }
+
+  .app-main {
+    margin-left: 0;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+  }
+}
+
+/* ... rest of the styles ... */
