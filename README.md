@@ -16,13 +16,23 @@ Install:
 * Node.js (v18 or later)
 * npm
   
-To enable AI features:
+## Environment Setup
 
-1. Create a Gemini API key from Google AI Studio.
-2. Create a .env file in the project root.
-3. Add:
+1. Copy `.env.example` and create a new file named `.env`.
 
-VITE_GEMINI_API_KEY=YOUR_API_KEY
+2. Replace the placeholder values with your own Firebase and Gemini API credentials.
+
+3. Save the file.
+
+4. Start the application:
+
+```bash
+npm install
+npm run dev
+```
+
+Note: The `.env` file is intentionally excluded from GitHub for security reasons and must be created locally.
+
 
 4. Run:
 
