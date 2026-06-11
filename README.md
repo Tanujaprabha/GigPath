@@ -1,4 +1,4 @@
-# GigPath – AI-Powered Financial Guidance Platform for Gig Workers
+# GigPath – Smart Financial Guidance Platform for Gig Workers With AI Chat
 
 ## Technologies Used
 
