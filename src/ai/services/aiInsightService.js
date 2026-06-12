@@ -151,9 +151,9 @@ export const generateLocalInsights = ({ transactions, goals, recurringExpenses }
 };
 
 export const generateDashboardInsights = async ({ transactions, goals, recurringExpenses, income, expenses }) => {
-  const geminiKey = import.meta.env.VITE_GEMINI_API_KEY;
+  const groqKey = import.meta.env.VITE_GROQ_API_KEY;
   const openaiKey = import.meta.env.VITE_OPENAI_API_KEY;
-  const hasAIKey = !!(geminiKey || openaiKey);
+  const hasAIKey = !!(groqKey || openaiKey);
 
   let analytics;
   try {
@@ -223,7 +223,7 @@ Do not return any extra markdown formatting outside the JSON code block.
     }
     throw new Error("Invalid structure returned from AI");
   } catch (err) {
-    console.error("Gemini API/Parsing Error in generateDashboardInsights, falling back to local engine:", err);
+    console.error("AI API/Parsing Error in generateDashboardInsights, falling back to local engine:", err);
     return localInsights;
   }
 };
@@ -245,7 +245,7 @@ Provide ONLY the explanation sentence without quotes.
     const response = await callAI(prompt);
     return response.replace(/^"|"$/g, '').trim();
   } catch (err) {
-    console.error("Gemini API Error in explainSafeToSpend:", err);
+    console.error("AI API Error in explainSafeToSpend:", err);
     return `Your safe-to-spend amount is ${safeToSpend} after deducting expenses, recurring charges, and goals from income.`;
   }
 };

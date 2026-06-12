@@ -1,6 +1,5 @@
 import { Builder, By, until } from 'selenium-webdriver';
 import chrome from 'selenium-webdriver/chrome.js';
-import 'chromedriver';
 import assert from 'assert';
 
 describe('Login Flow E2E Test', function() {
