@@ -74,8 +74,8 @@ describe('TC-AUTH: Authentication', function () {
   await driver.get(`${BASE_URL}#/signup`);
   await driver.sleep(1000);
 
-  const currentUrl = await driver.getCurrentUrl();
-  console.log('Current URL before interaction:', currentUrl);
+  const initialUrl = await driver.getCurrentUrl();
+  console.log('Current URL before interaction:', initialUrl);
 
   const fs = await import('fs');
   const screenshot = await driver.takeScreenshot();
