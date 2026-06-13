@@ -3,7 +3,8 @@ import chrome from 'selenium-webdriver/chrome.js';
 import fs from 'fs';
 import path from 'path';
 
-export const BASE_URL = 'http://127.0.0.1:4173/GigPath/';
+export const BASE_URL =
+  process.env.BASE_URL || 'http://127.0.0.1:5173/GigPath/';
 
 export async function setupDriver(viewport = { width: 1920, height: 1080 }) {
   let options = new chrome.Options();
