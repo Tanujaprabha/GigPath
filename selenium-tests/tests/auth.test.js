@@ -72,6 +72,15 @@ describe('TC-AUTH: Authentication', function () {
 
   it('TC-AUTH-05: Signup - should handle account creation', async function () {
   await driver.get(`${BASE_URL}#/signup`);
+  await driver.sleep(1000);
+
+  const currentUrl = await driver.getCurrentUrl();
+  console.log('Current URL before interaction:', currentUrl);
+
+  const fs = await import('fs');
+  const screenshot = await driver.takeScreenshot();
+  fs.writeFileSync('reports/signup_diagnostic.png', screenshot, 'base64');
+  console.log('Saved diagnostic screenshot to reports/signup_diagnostic.png');
 
   const nameInput = await driver.wait(
     until.elementLocated(By.css('input[name="name"]')),
@@ -96,20 +105,25 @@ describe('TC-AUTH: Authentication', function () {
 
   await driver.wait(until.elementIsVisible(nameInput), 5000);
   await driver.wait(until.elementIsEnabled(nameInput), 5000);
+  console.log('Attempting to send keys to nameInput');
   await nameInput.sendKeys('Test User');
 
   await driver.wait(until.elementIsVisible(emailInput), 5000);
   await driver.wait(until.elementIsEnabled(emailInput), 5000);
+  console.log('Attempting to send keys to emailInput');
   await emailInput.sendKeys(`test_${Date.now()}@gmail.com`);
 
   await driver.wait(until.elementIsVisible(passwordInput), 5000);
   await driver.wait(until.elementIsEnabled(passwordInput), 5000);
+  console.log('Attempting to send keys to passwordInput');
   await passwordInput.sendKeys('password123');
 
   await driver.wait(until.elementIsVisible(confirmInput), 5000);
   await driver.wait(until.elementIsEnabled(confirmInput), 5000);
+  console.log('Attempting to send keys to confirmInput');
   await confirmInput.sendKeys('password123');
 
+  console.log('Attempting to click submitBtn');
   await driver.executeScript("arguments[0].click();", submitBtn);
 
   await driver.sleep(3000);
