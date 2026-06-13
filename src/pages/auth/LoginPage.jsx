@@ -75,9 +75,9 @@ export default function LoginPage() {
           // ignore fetch error and fallback
         }
       }
-      console.error(err);
-      console.error(err.stack);
-      alert(err.message);
+      console.error("Login Error:", err);
+      console.error("Login Error Code:", err.code);
+      console.error("Login Error Message:", err.message);
       setError(`[${err.code || 'NO_CODE'}] ${err.message || 'Login failed.'}`)
     } finally {
       setLoading(false)
@@ -100,9 +100,9 @@ export default function LoginPage() {
       login({ email: user.email, name: user.displayName, uid: user.uid })
       navigate('/app/dashboard', { replace: true })
     } catch (error) {
-      console.error(error);
-      console.error(error.stack);
-      alert(error.message);
+      console.error("Google Sign-In Error:", error);
+      console.error("Google Sign-In Error Code:", error.code);
+      console.error("Google Sign-In Error Message:", error.message);
       setError(`[${error.code || 'NO_CODE'}] ${error.message || 'Google Sign-In failed.'}`)
     } finally {
       setLoading(false)
