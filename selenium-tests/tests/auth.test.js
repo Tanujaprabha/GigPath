@@ -94,12 +94,23 @@ describe('TC-AUTH: Authentication', function () {
     5000
   );
 
+  await driver.wait(until.elementIsVisible(nameInput), 5000);
+  await driver.wait(until.elementIsEnabled(nameInput), 5000);
   await nameInput.sendKeys('Test User');
+
+  await driver.wait(until.elementIsVisible(emailInput), 5000);
+  await driver.wait(until.elementIsEnabled(emailInput), 5000);
   await emailInput.sendKeys(`test_${Date.now()}@gmail.com`);
+
+  await driver.wait(until.elementIsVisible(passwordInput), 5000);
+  await driver.wait(until.elementIsEnabled(passwordInput), 5000);
   await passwordInput.sendKeys('password123');
+
+  await driver.wait(until.elementIsVisible(confirmInput), 5000);
+  await driver.wait(until.elementIsEnabled(confirmInput), 5000);
   await confirmInput.sendKeys('password123');
 
-  await submitBtn.click();
+  await driver.executeScript("arguments[0].click();", submitBtn);
 
   await driver.sleep(3000);
 
