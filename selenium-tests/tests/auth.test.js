@@ -77,11 +77,6 @@ describe('TC-AUTH: Authentication', function () {
   const initialUrl = await driver.getCurrentUrl();
   console.log('Current URL before interaction:', initialUrl);
 
-  const fs = await import('fs');
-  const screenshot = await driver.takeScreenshot();
-  fs.writeFileSync('reports/signup_diagnostic.png', screenshot, 'base64');
-  console.log('Saved diagnostic screenshot to reports/signup_diagnostic.png');
-
   const nameInput = await driver.wait(
     until.elementLocated(By.css('input[name="name"]')),
     5000
