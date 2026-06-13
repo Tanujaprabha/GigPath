@@ -7,7 +7,7 @@ export const BASE_URL = 'http://127.0.0.1:5173/GigPath/';
 
 export async function setupDriver(viewport = { width: 1920, height: 1080 }) {
   let options = new chrome.Options();
-  // options.addArguments('--headless=new'); // Run headless by default for CI and full suite
+  options.addArguments('--headless=new'); // Run headless by default for CI and full suite
   options.addArguments('--disable-gpu');
   options.addArguments(`--window-size=${viewport.width},${viewport.height}`);
   options.addArguments('--no-sandbox');
