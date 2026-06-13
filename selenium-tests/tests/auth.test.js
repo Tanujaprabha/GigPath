@@ -95,7 +95,7 @@ describe('TC-AUTH: Authentication', function () {
   );
 
   await nameInput.sendKeys('Test User');
-  await emailInput.sendKeys(`test_${Date.now()}@example.com`);
+  await emailInput.sendKeys(`test_${Date.now()}@gmail.com`);
   await passwordInput.sendKeys('password123');
   await confirmInput.sendKeys('password123');
 

@@ -68,10 +68,13 @@ export default function SignupPage() {
         state: { message: 'Account created successfully. Please log in.' } 
       })
     } catch (err) {
-      console.error(err);
-      console.error(err.stack);
-      alert(err.message);
-      setError(`[${err.code || 'NO_CODE'}] ${err.message || 'Signup failed.'}`)
+      console.error("Signup Error:", err);
+      console.error("Signup Error Code:", err.code);
+      console.error("Signup Error Message:", err.message);
+
+      setError(
+        `[${err.code || 'NO_CODE'}] ${err.message || 'Signup failed.'}`
+      );
     } finally {
       setLoading(false)
     }
@@ -93,9 +96,9 @@ export default function SignupPage() {
       login({ email: user.email, name: user.displayName, uid: user.uid })
       navigate('/app/dashboard', { replace: true })
     } catch (error) {
-      console.error(error);
-      console.error(error.stack);
-      alert(error.message);
+      console.error("Google Sign-In Error:", error);
+      console.error("Google Sign-In Error Code:", error.code);
+      console.error("Google Sign-In Error Message:", error.message);
       setError(`[${error.code || 'NO_CODE'}] ${error.message || 'Google Sign-In failed.'}`)
     } finally {
       setLoading(false)
