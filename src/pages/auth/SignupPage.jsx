@@ -52,25 +52,6 @@ export default function SignupPage() {
     setLoading(true)
     setError('')
     try {
-      try {
-        const methods = await fetchSignInMethodsForEmail(auth, form.email)
-        if (methods && methods.includes('google.com')) {
-          setError('This email uses Google Sign-In. Redirecting to verify and link your password...')
-          const result = await signInWithGoogle()
-          const credential = EmailAuthProvider.credential(form.email, form.password)
-          try {
-            await linkWithCredential(result.user, credential)
-          } catch (linkErr) {
-            console.warn('Linking error or already linked', linkErr)
-          }
-          login({ email: result.user.email, name: result.user.displayName, uid: result.user.uid })
-          navigate('/app/dashboard', { replace: true })
-          return
-        }
-      } catch (e) {
-        // ignore fetch error
-      }
-
       const userCredential = await firebaseSignup(form.email, form.password)
       const user = userCredential.user
       
