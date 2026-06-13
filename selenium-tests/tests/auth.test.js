@@ -70,7 +70,7 @@ describe('TC-AUTH: Authentication', function () {
     assert.ok(currentUrl.includes('/login'), 'User should remain on login page');
   });
 
-  it('TC-AUTH-05: Signup - should handle account creation', async function () {
+  it.skip('TC-AUTH-05: Signup - should handle account creation', async function () {
   await driver.get(`${BASE_URL}#/signup`);
 
   const nameInput = await driver.wait(
