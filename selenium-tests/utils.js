@@ -7,11 +7,10 @@ export const BASE_URL =
   process.env.BASE_URL || 'http://127.0.0.1:5173/GigPath/';
 
 export async function setupDriver(viewport = { width: 1920, height: 1080 }) {
-  // Use locally installed chromedriver
-  const serviceBuilder = new chrome.ServiceBuilder(path.resolve('node_modules', 'chromedriver', 'lib', 'chromedriver', 'chromedriver.exe'));
+  const options = new chrome.Options();
 
-  let options = new chrome.Options();
-  //options.addArguments('--headless=new'); // Run headless by default for CI and full suite
+  // Required for GitHub Actions / Linux CI
+  options.addArguments('--headless=new');
   options.addArguments('--disable-gpu');
   options.addArguments(`--window-size=${viewport.width},${viewport.height}`);
   options.addArguments('--no-sandbox');
@@ -21,21 +20,34 @@ export async function setupDriver(viewport = { width: 1920, height: 1080 }) {
   return await new Builder()
     .forBrowser('chrome')
     .setChromeOptions(options)
-    .setChromeService(serviceBuilder)
     .build();
 }
 
 export async function takeScreenshotOnFailure(driver, testContext) {
+  if (!driver) {
+    console.log('Screenshot skipped: driver not initialized');
+    return;
+  }
+
   if (testContext.currentTest.state === 'failed') {
     const reportsDir = path.resolve('reports', 'screenshots');
+
     if (!fs.existsSync(reportsDir)) {
       fs.mkdirSync(reportsDir, { recursive: true });
     }
 
-    // Create safe filename from test title
-    const safeTitle = testContext.currentTest.title.replace(/[^a-z0-9]/gi, '_').toLowerCase();
-    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-    const screenshotPath = path.join(reportsDir, `${safeTitle}_${timestamp}.png`);
+    const safeTitle = testContext.currentTest.title
+      .replace(/[^a-z0-9]/gi, '_')
+      .toLowerCase();
+
+    const timestamp = new Date()
+      .toISOString()
+      .replace(/[:.]/g, '-');
+
+    const screenshotPath = path.join(
+      reportsDir,
+      `${safeTitle}_${timestamp}.png`
+    );
 
     try {
       const image = await driver.takeScreenshot();
@@ -47,18 +59,36 @@ export async function takeScreenshotOnFailure(driver, testContext) {
   }
 }
 
-export async function performLogin(driver, email = 'test@example.com', password = 'testpassword123') {
+export async function performLogin(
+  driver,
+  email = 'test@example.com',
+  password = 'testpassword123'
+) {
   const { until, By } = await import('selenium-webdriver');
+
   await driver.get(`${BASE_URL}#/login`);
 
-  const emailInput = await driver.wait(until.elementLocated(By.css('input[type="email"]')), 10000);
-  const passwordInput = await driver.wait(until.elementLocated(By.css('input[type="password"]')), 10000);
-  const loginBtn = await driver.wait(until.elementLocated(By.css('button[type="submit"]')), 10000);
+  const emailInput = await driver.wait(
+    until.elementLocated(By.css('input[type="email"]')),
+    10000
+  );
+
+  const passwordInput = await driver.wait(
+    until.elementLocated(By.css('input[type="password"]')),
+    10000
+  );
+
+  const loginBtn = await driver.wait(
+    until.elementLocated(By.css('button[type="submit"]')),
+    10000
+  );
 
   await emailInput.sendKeys(email);
   await passwordInput.sendKeys(password);
   await loginBtn.click();
 
-  // Wait for navigation away from login
-  await driver.wait(until.urlContains('/dashboard'), 10000);
+  await driver.wait(
+    until.urlContains('/dashboard'),
+    10000
+  );
 }
