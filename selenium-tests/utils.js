@@ -7,8 +7,11 @@ export const BASE_URL =
   process.env.BASE_URL || 'http://127.0.0.1:5173/GigPath/';
 
 export async function setupDriver(viewport = { width: 1920, height: 1080 }) {
+  // Use locally installed chromedriver
+  const serviceBuilder = new chrome.ServiceBuilder(path.resolve('node_modules', 'chromedriver', 'lib', 'chromedriver', 'chromedriver.exe'));
+
   let options = new chrome.Options();
-  options.addArguments('--headless=new'); // Run headless by default for CI and full suite
+  //options.addArguments('--headless=new'); // Run headless by default for CI and full suite
   options.addArguments('--disable-gpu');
   options.addArguments(`--window-size=${viewport.width},${viewport.height}`);
   options.addArguments('--no-sandbox');
@@ -18,6 +21,7 @@ export async function setupDriver(viewport = { width: 1920, height: 1080 }) {
   return await new Builder()
     .forBrowser('chrome')
     .setChromeOptions(options)
+    .setChromeService(serviceBuilder)
     .build();
 }
 

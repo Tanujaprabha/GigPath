@@ -12,6 +12,7 @@
     "deploy": "gh-pages -d dist",
     "test:e2e": "mocha selenium-tests/tests/*.test.js --timeout 30000 --reporter selenium-tests/excel-reporter.cjs",
     "test:mobile": "mocha appium-tests/tests/*.test.js --timeout 60000 --reporter appium-tests/excel-reporter.cjs",
+    "test:security": "mocha security-tests/*.test.js --timeout 30000 --reporter selenium-tests/excel-reporter.cjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -36,6 +37,7 @@
     "@vitejs/plugin-react": "^6.0.1",
     "appium": "^3.5.0",
     "appium-uiautomator2-driver": "^7.6.1",
+    "chromedriver": "^149.0.2",
     "eslint": "^10.2.1",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
