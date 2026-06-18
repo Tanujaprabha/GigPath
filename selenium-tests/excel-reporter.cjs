@@ -10,16 +10,20 @@ const {
   EVENT_TEST_PASS,
 } = Mocha.Runner.constants;
 
-class ExcelReporter extends Mocha.reporters.Spec {
+class ExcelReporter extends Mocha.reporters.Base {
   constructor(runner, options) {
     super(runner, options);
     
     this.results = [];
     this.startTime = null;
+    this.totalCompleted = 0;
+    this.totalTests = 0;
 
     runner
       .once(EVENT_RUN_BEGIN, () => {
         this.startTime = new Date();
+        this.totalTests = runner.total;
+        console.log('\nStarting Test Suite Execution...\n');
       })
       .on(EVENT_TEST_PASS, test => {
         let id = '';
@@ -29,7 +33,19 @@ class ExcelReporter extends Mocha.reporters.Spec {
           id = match[1];
           scenario = match[2];
         }
+        this.totalCompleted++;
         
+        if (this.totalCompleted > 1 && process.stdout.isTTY) {
+          const readline = require('readline');
+          readline.moveCursor(process.stdout, 0, -2);
+          readline.clearScreenDown(process.stdout);
+        }
+        console.log(`\x1b[32m✔\x1b[0m ${id}: ${scenario} (${test.duration}ms)`);
+        
+        if (process.stdout.isTTY) {
+            process.stdout.write(`\nProgress: ${this.totalCompleted}/${this.totalTests}\n`);
+        }
+
         this.results.push({
           id: id,
           scenario: scenario,
@@ -48,6 +64,18 @@ class ExcelReporter extends Mocha.reporters.Spec {
           id = match[1];
           scenario = match[2];
         }
+        this.totalCompleted++;
+        
+        if (this.totalCompleted > 1 && process.stdout.isTTY) {
+          const readline = require('readline');
+          readline.moveCursor(process.stdout, 0, -2);
+          readline.clearScreenDown(process.stdout);
+        }
+        console.log(`\x1b[31m✖\x1b[0m ${id}: ${scenario} (${test.duration}ms)`);
+        
+        if (process.stdout.isTTY) {
+            process.stdout.write(`\nProgress: ${this.totalCompleted}/${this.totalTests}\n`);
+        }
 
         this.results.push({
           id: id,
@@ -60,6 +88,10 @@ class ExcelReporter extends Mocha.reporters.Spec {
         });
       })
       .once(EVENT_RUN_END, async () => {
+        // Clear the final progress line to make room for the summary
+        process.stdout.write('\x1b[2K\x1b[0G');
+        process.stdout.write('\x1b[1A\x1b[2K\x1b[0G');
+        
         const totalDuration = new Date() - this.startTime;
         await this.generateReport(this.runner.stats, totalDuration);
       });
