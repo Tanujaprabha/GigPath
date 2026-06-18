@@ -14,14 +14,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "594068319655-2sngikndkjvs7gj9t9jdqk7fal1mitts.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.gigpath.app",
-            "certificate_hash": "bc7634341225b5c756f94e6bcac1226af032dbe5"
-          }
-        },
-        {
           "client_id": "594068319655-r8qsdll7pvejoi7iu4fd18j72olbqop1.apps.googleusercontent.com",
           "client_type": 3
         }

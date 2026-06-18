@@ -1,0 +1,798 @@
+{
+  "src\\pages\\ai\\ChatPage.jsx": [
+    {
+      "tag": "button",
+      "name": null,
+      "type": "button",
+      "id": null,
+      "className": "chip"
+    },
+    {
+      "tag": "form",
+      "name": null,
+      "type": null,
+      "id": null,
+      "className": "chat-form"
+    },
+    {
+      "tag": "button",
+      "name": null,
+      "type": "button",
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "button",
+      "name": null,
+      "type": "submit",
+      "id": null,
+      "className": "button button--primary"
+    }
+  ],
+  "src\\pages\\auth\\ForgotPasswordPage.jsx": [
+    {
+      "tag": "form",
+      "name": null,
+      "type": null,
+      "id": null,
+      "className": "stack-form"
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "type": "email",
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "button",
+      "name": null,
+      "type": "submit",
+      "id": null,
+      "className": "button button--primary button--block"
+    },
+    {
+      "tag": "Link",
+      "to": "/login"
+    },
+    {
+      "tag": "Link",
+      "to": "/login"
+    }
+  ],
+  "src\\pages\\auth\\LoginPage.jsx": [
+    {
+      "tag": "form",
+      "name": null,
+      "type": null,
+      "id": null,
+      "className": "stack-form"
+    },
+    {
+      "tag": "input",
+      "name": "email",
+      "type": "email",
+      "id": "email",
+      "className": null
+    },
+    {
+      "tag": "input",
+      "name": "password",
+      "type": "password",
+      "id": "password",
+      "className": null
+    },
+    {
+      "tag": "button",
+      "name": null,
+      "type": "submit",
+      "id": "login-button",
+      "className": "button button--primary button--block"
+    },
+    {
+      "tag": "button",
+      "name": null,
+      "type": "button",
+      "id": null,
+      "className": "button button--secondary button--block"
+    },
+    {
+      "tag": "Link",
+      "to": "/signup"
+    },
+    {
+      "tag": "Link",
+      "to": "/forgot-password"
+    }
+  ],
+  "src\\pages\\auth\\OtpVerificationPage.jsx": [
+    {
+      "tag": "Link",
+      "to": "/forgot-password"
+    },
+    {
+      "tag": "Link",
+      "to": "/login"
+    }
+  ],
+  "src\\pages\\auth\\ResetPasswordPage.jsx": [
+    {
+      "tag": "form",
+      "name": null,
+      "type": null,
+      "id": null,
+      "className": "stack-form"
+    },
+    {
+      "tag": "input",
+      "name": "password",
+      "type": "password",
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "input",
+      "name": "confirmPassword",
+      "type": "password",
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "button",
+      "name": null,
+      "type": "submit",
+      "id": null,
+      "className": "button button--primary button--block"
+    },
+    {
+      "tag": "Link",
+      "to": "/login"
+    }
+  ],
+  "src\\pages\\auth\\SignupPage.jsx": [
+    {
+      "tag": "form",
+      "name": null,
+      "type": null,
+      "id": null,
+      "className": "stack-form"
+    },
+    {
+      "tag": "input",
+      "name": "name",
+      "type": null,
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "input",
+      "name": "email",
+      "type": "email",
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "input",
+      "name": "password",
+      "type": "password",
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "input",
+      "name": "confirmPassword",
+      "type": "password",
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "button",
+      "name": null,
+      "type": "submit",
+      "id": null,
+      "className": "button button--primary button--block"
+    },
+    {
+      "tag": "button",
+      "name": null,
+      "type": "button",
+      "id": null,
+      "className": "button button--secondary button--block"
+    },
+    {
+      "tag": "Link",
+      "to": "/login"
+    }
+  ],
+  "src\\pages\\dashboard\\DashboardPage.jsx": [
+    {
+      "tag": "Link",
+      "to": "/app/finance/transactions/new"
+    },
+    {
+      "tag": "Link",
+      "to": "/app/finance/transactions"
+    },
+    {
+      "tag": "Link",
+      "to": "/app/finance/transactions/new"
+    },
+    {
+      "tag": "Link",
+      "to": "/app/goals/new"
+    },
+    {
+      "tag": "Link",
+      "to": "/app/insights/weekly-report"
+    },
+    {
+      "tag": "Link",
+      "to": "/app/notifications"
+    },
+    {
+      "tag": "Link",
+      "to": "/app/notifications"
+    }
+  ],
+  "src\\pages\\finance\\AddRecurringExpensePage.jsx": [
+    {
+      "tag": "form",
+      "name": null,
+      "type": null,
+      "id": null,
+      "className": "form-grid"
+    },
+    {
+      "tag": "input",
+      "name": "title",
+      "type": null,
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "select",
+      "name": "category",
+      "type": null,
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "input",
+      "name": "amount",
+      "type": "number",
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "input",
+      "name": "nextCharge",
+      "type": "date",
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "select",
+      "name": "frequency",
+      "type": null,
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "button",
+      "name": null,
+      "type": "submit",
+      "id": null,
+      "className": "button button--primary"
+    },
+    {
+      "tag": "Link",
+      "to": "/app/finance/recurring-expenses"
+    }
+  ],
+  "src\\pages\\finance\\AddTransactionPage.jsx": [
+    {
+      "tag": "Link",
+      "to": "/app/finance/transactions"
+    }
+  ],
+  "src\\pages\\finance\\EditTransactionPage.jsx": [
+    {
+      "tag": "Link",
+      "to": "/app/finance/transactions"
+    }
+  ],
+  "src\\pages\\finance\\RecurringExpensesPage.jsx": [
+    {
+      "tag": "Link",
+      "to": "/app/finance/recurring-expenses/new"
+    }
+  ],
+  "src\\pages\\finance\\TransactionDetailPage.jsx": [
+    {
+      "tag": "Link",
+      "to": "/app/finance/transactions"
+    },
+    {
+      "tag": "Link",
+      "to": "/app/finance/transactions"
+    }
+  ],
+  "src\\pages\\finance\\TransactionListPage.jsx": [
+    {
+      "tag": "button",
+      "name": null,
+      "type": "button",
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "Link",
+      "to": "/app/finance/transactions/new"
+    }
+  ],
+  "src\\pages\\goals\\AddGoalPage.jsx": [
+    {
+      "tag": "Link",
+      "to": "/app/goals"
+    }
+  ],
+  "src\\pages\\goals\\EditGoalPage.jsx": [
+    {
+      "tag": "Link",
+      "to": "/app/goals"
+    }
+  ],
+  "src\\pages\\goals\\GoalDetailPage.jsx": [
+    {
+      "tag": "Link",
+      "to": "/app/goals"
+    },
+    {
+      "tag": "Link",
+      "to": "/app/goals"
+    }
+  ],
+  "src\\pages\\goals\\GoalProgressPage.jsx": [
+    {
+      "tag": "Link",
+      "to": "/app/goals"
+    }
+  ],
+  "src\\pages\\goals\\GoalsListPage.jsx": [
+    {
+      "tag": "Link",
+      "to": "/app/goals/new"
+    }
+  ],
+  "src\\pages\\profile\\EditProfilePage.jsx": [
+    {
+      "tag": "form",
+      "name": null,
+      "type": null,
+      "id": null,
+      "className": "stack-form"
+    },
+    {
+      "tag": "button",
+      "name": null,
+      "type": "button",
+      "id": null,
+      "className": "button button--secondary button--sm"
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "type": "text",
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "type": "email",
+      "id": null,
+      "className": "input--readonly"
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "type": "tel",
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "type": "text",
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "type": "text",
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "button",
+      "name": null,
+      "type": "submit",
+      "id": null,
+      "className": "button button--primary"
+    },
+    {
+      "tag": "button",
+      "name": null,
+      "type": "button",
+      "id": null,
+      "className": "button button--secondary"
+    }
+  ],
+  "src\\pages\\profile\\NotificationsPage.jsx": [
+    {
+      "tag": "button",
+      "name": null,
+      "type": null,
+      "id": null,
+      "className": "button button--secondary"
+    },
+    {
+      "tag": "button",
+      "name": null,
+      "type": null,
+      "id": null,
+      "className": "button button--ghost"
+    },
+    {
+      "tag": "button",
+      "name": null,
+      "type": null,
+      "id": null,
+      "className": "delete-notification-btn"
+    }
+  ],
+  "src\\pages\\profile\\PreferencesPage.jsx": [
+    {
+      "tag": "form",
+      "name": null,
+      "type": null,
+      "id": null,
+      "className": "form-grid"
+    },
+    {
+      "tag": "select",
+      "name": "currency",
+      "type": null,
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "select",
+      "name": "summaryDay",
+      "type": null,
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "select",
+      "name": "theme",
+      "type": null,
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "select",
+      "name": "defaultExpenseCategory",
+      "type": null,
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "select",
+      "name": "dashboardDensity",
+      "type": null,
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "input",
+      "name": "notificationEnabled",
+      "type": "checkbox",
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "input",
+      "name": "voiceAssistantEnabled",
+      "type": "checkbox",
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "input",
+      "name": "compactTables",
+      "type": "checkbox",
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "button",
+      "name": null,
+      "type": "submit",
+      "id": null,
+      "className": "button button--primary"
+    }
+  ],
+  "src\\pages\\profile\\ProfilePage.jsx": [
+    {
+      "tag": "Link",
+      "to": "/app/profile/edit"
+    }
+  ],
+  "src\\pages\\profile\\SecurityPage.jsx": [
+    {
+      "tag": "form",
+      "name": null,
+      "type": null,
+      "id": null,
+      "className": "stack-form"
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "type": "password",
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "type": "password",
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "button",
+      "name": null,
+      "type": "submit",
+      "id": null,
+      "className": "button button--primary"
+    }
+  ],
+  "src\\pages\\shared\\WelcomeScreen.jsx": [
+    {
+      "tag": "button",
+      "name": null,
+      "type": null,
+      "id": null,
+      "className": "button button--primary button--block"
+    }
+  ],
+  "src\\components\\layout\\AppLayout.jsx": [
+    {
+      "tag": "button",
+      "name": null,
+      "type": null,
+      "id": null,
+      "className": "hamburger-btn"
+    },
+    {
+      "tag": "Link",
+      "to": "/app/notifications"
+    }
+  ],
+  "src\\components\\layout\\Sidebar.jsx": [
+    {
+      "tag": "button",
+      "name": null,
+      "type": null,
+      "id": null,
+      "className": "sidebar-close-btn"
+    },
+    {
+      "tag": "button",
+      "name": null,
+      "type": "button",
+      "id": null,
+      "className": "sidebar-toggle"
+    },
+    {
+      "tag": "button",
+      "name": null,
+      "type": "button",
+      "id": null,
+      "className": "button button--ghost button--block"
+    }
+  ],
+  "src\\components\\ui\\GoalForm.jsx": [
+    {
+      "tag": "form",
+      "name": null,
+      "type": null,
+      "id": null,
+      "className": "form-grid"
+    },
+    {
+      "tag": "input",
+      "name": "title",
+      "type": null,
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "input",
+      "name": "targetAmount",
+      "type": "number",
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "input",
+      "name": "savedAmount",
+      "type": "number",
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "input",
+      "name": "deadline",
+      "type": "date",
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "input",
+      "name": "monthlyContribution",
+      "type": "number",
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "select",
+      "name": "priority",
+      "type": null,
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "button",
+      "name": null,
+      "type": "submit",
+      "id": null,
+      "className": "button button--primary"
+    }
+  ],
+  "src\\components\\ui\\ProfileForm.jsx": [
+    {
+      "tag": "form",
+      "name": null,
+      "type": null,
+      "id": null,
+      "className": "form-grid"
+    },
+    {
+      "tag": "input",
+      "name": "fullName",
+      "type": null,
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "input",
+      "name": "email",
+      "type": "email",
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "input",
+      "name": "phone",
+      "type": null,
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "input",
+      "name": "city",
+      "type": null,
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "input",
+      "name": "workType",
+      "type": null,
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "input",
+      "name": "payoutMethod",
+      "type": null,
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "button",
+      "name": null,
+      "type": "submit",
+      "id": null,
+      "className": "button button--primary"
+    }
+  ],
+  "src\\components\\ui\\ToggleRow.jsx": [
+    {
+      "tag": "input",
+      "name": null,
+      "type": "checkbox",
+      "id": null,
+      "className": null
+    }
+  ],
+  "src\\components\\ui\\TransactionForm.jsx": [
+    {
+      "tag": "form",
+      "name": null,
+      "type": null,
+      "id": null,
+      "className": "form-grid"
+    },
+    {
+      "tag": "input",
+      "name": "title",
+      "type": null,
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "input",
+      "name": "amount",
+      "type": "number",
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "select",
+      "name": "type",
+      "type": null,
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "select",
+      "name": "category",
+      "type": null,
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "input",
+      "name": "date",
+      "type": "date",
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "select",
+      "name": "method",
+      "type": null,
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "select",
+      "name": "status",
+      "type": null,
+      "id": null,
+      "className": null
+    },
+    {
+      "tag": "button",
+      "name": null,
+      "type": "submit",
+      "id": null,
+      "className": "button button--primary"
+    }
+  ]
+}

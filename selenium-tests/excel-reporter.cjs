@@ -22,8 +22,17 @@ class ExcelReporter extends Mocha.reporters.Spec {
         this.startTime = new Date();
       })
       .on(EVENT_TEST_PASS, test => {
+        let id = '';
+        let scenario = test.title;
+        const match = test.title.match(/^\[(.*?)\] (.*)$/);
+        if (match) {
+          id = match[1];
+          scenario = match[2];
+        }
+        
         this.results.push({
-          name: test.title,
+          id: id,
+          scenario: scenario,
           module: test.parent ? test.parent.title : 'General',
           status: 'Pass',
           duration: test.duration || 0,
@@ -32,8 +41,17 @@ class ExcelReporter extends Mocha.reporters.Spec {
         });
       })
       .on(EVENT_TEST_FAIL, (test, err) => {
+        let id = '';
+        let scenario = test.title;
+        const match = test.title.match(/^\[(.*?)\] (.*)$/);
+        if (match) {
+          id = match[1];
+          scenario = match[2];
+        }
+
         this.results.push({
-          name: test.title,
+          id: id,
+          scenario: scenario,
           module: test.parent ? test.parent.title : 'General',
           status: 'Fail',
           duration: test.duration || 0,
@@ -53,8 +71,9 @@ class ExcelReporter extends Mocha.reporters.Spec {
 
     // Make columns wider
     sheet.columns = [
-      { width: 30 }, // Module Name
-      { width: 50 }, // Test Name
+      { width: 25 }, // Module Name
+      { width: 20 }, // Test Case ID
+      { width: 50 }, // Scenario Name
       { width: 15 }, // Status
       { width: 25 }, // Execution Time
       { width: 50 }, // Error Message
@@ -82,7 +101,7 @@ class ExcelReporter extends Mocha.reporters.Spec {
     sheet.getCell('B4').font = { color: { argb: 'FFFF0000' }, bold: true }; // Red for failed
 
     // Details Header
-    const headerRow = sheet.addRow(['Module', 'Test Name', 'Status', 'Execution Time', 'Error Message', 'Execution Date/Time']);
+    const headerRow = sheet.addRow(['Module', 'Test Case ID', 'Scenario Name', 'Status', 'Execution Time', 'Error Message', 'Execution Date/Time']);
     headerRow.font = { bold: true, color: { argb: 'FFFFFFFF' } };
     headerRow.eachCell(cell => {
       cell.fill = {
@@ -97,22 +116,23 @@ class ExcelReporter extends Mocha.reporters.Spec {
     this.results.forEach(res => {
       const row = sheet.addRow([
         res.module,
-        res.name, 
+        res.id,
+        res.scenario, 
         res.status, 
         `${res.duration}ms`, 
         res.error, 
         res.date
       ]);
       
-      const statusCell = row.getCell(3);
+      const statusCell = row.getCell(4);
       if (res.status === 'Pass') {
         statusCell.font = { color: { argb: 'FF00B050' }, bold: true };
       } else {
         statusCell.font = { color: { argb: 'FFFF0000' }, bold: true };
       }
       statusCell.alignment = { horizontal: 'center' };
-      row.getCell(4).alignment = { horizontal: 'center' };
-      row.getCell(6).alignment = { horizontal: 'center' };
+      row.getCell(5).alignment = { horizontal: 'center' };
+      row.getCell(7).alignment = { horizontal: 'center' };
     });
 
     const reportsDir = path.resolve('reports');
