@@ -4,6 +4,7 @@
 
 import { getMonthlyReport, getDaysUntil } from '../utils/analytics';
 import { formatMonthLabel } from '../utils/formatters';
+import { safeDate } from '../utils/dateUtils';
 
 const getTargetMonth = (transactions) => {
   const today = new Date();
@@ -113,8 +114,32 @@ export const getSavingsAnalytics = (data) => {
 };
 
 export const getGoalAnalytics = (data) => {
-  const goals = data?.goals || [];
+  const rawGoals = data?.goals || [];
   const transactions = data?.transactions || [];
+
+  // Filter out goals with invalid dates defensively
+  const goals = [];
+  for (const goal of rawGoals) {
+    if (!goal) continue;
+    
+    if (goal.targetDate !== undefined && goal.targetDate !== null && goal.targetDate !== "") {
+      const targetDate = safeDate(goal.targetDate);
+      if (!targetDate) {
+        console.warn("Invalid goal date skipped", goal);
+        continue;
+      }
+    }
+    
+    if (goal.deadline !== undefined && goal.deadline !== null && goal.deadline !== "") {
+      const deadlineDate = safeDate(goal.deadline);
+      if (!deadlineDate) {
+        console.warn("Invalid goal date skipped", goal);
+        continue;
+      }
+    }
+    
+    goals.push(goal);
+  }
 
   const totalGoalTargets = goals.reduce((sum, g) => sum + toNumber(g.targetAmount), 0);
   const totalSavedAmount = goals.reduce((sum, g) => sum + toNumber(g.savedAmount), 0);
@@ -124,9 +149,14 @@ export const getGoalAnalytics = (data) => {
   const goalsWithDeadline = goals.filter((g) => g.deadline);
   let nearestDeadlineGoal = null;
   if (goalsWithDeadline.length > 0) {
-    const sorted = [...goalsWithDeadline].sort(
-      (a, b) => new Date(a.deadline).getTime() - new Date(b.deadline).getTime()
-    );
+    const sorted = [...goalsWithDeadline].sort((a, b) => {
+      const dateA = safeDate(a.deadline);
+      const dateB = safeDate(b.deadline);
+      if (!dateA && !dateB) return 0;
+      if (!dateA) return 1;
+      if (!dateB) return -1;
+      return dateA.getTime() - dateB.getTime();
+    });
     const nearest = sorted[0];
     nearestDeadlineGoal = {
       ...nearest,
@@ -147,8 +177,10 @@ export const getGoalAnalytics = (data) => {
   } else if (monthlyContributions > 0) {
     monthsRemaining = remainingTotal / monthlyContributions;
     const today = new Date();
-    const completionDate = new Date(today.getFullYear(), today.getMonth() + Math.ceil(monthsRemaining), 1);
-    estimatedCompletionMonth = formatMonthLabel(completionDate);
+    if (!isNaN(monthsRemaining) && isFinite(monthsRemaining)) {
+      const completionDate = new Date(today.getFullYear(), today.getMonth() + Math.ceil(monthsRemaining), 1);
+      estimatedCompletionMonth = formatMonthLabel(completionDate);
+    }
   }
 
   // Savings Consistency
@@ -173,12 +205,17 @@ export const getGoalAnalytics = (data) => {
     } else if (g.monthlyContribution && toNumber(g.monthlyContribution) > 0) {
       goalMonthsRemaining = remainingAmount / toNumber(g.monthlyContribution);
       const today = new Date();
-      const completionDate = new Date(today.getFullYear(), today.getMonth() + Math.ceil(goalMonthsRemaining), 1);
-      goalEstimatedCompletionMonth = formatMonthLabel(completionDate);
+      if (!isNaN(goalMonthsRemaining) && isFinite(goalMonthsRemaining)) {
+        const completionDate = new Date(today.getFullYear(), today.getMonth() + Math.ceil(goalMonthsRemaining), 1);
+        goalEstimatedCompletionMonth = formatMonthLabel(completionDate);
+      }
     } else if (g.deadline) {
       const days = getDaysUntil(g.deadline);
       goalMonthsRemaining = days / 30.4;
-      goalEstimatedCompletionMonth = formatMonthLabel(new Date(g.deadline));
+      const deadlineDate = safeDate(g.deadline);
+      if (deadlineDate) {
+        goalEstimatedCompletionMonth = formatMonthLabel(deadlineDate);
+      }
     }
 
     return {
@@ -203,3 +240,4 @@ export const getGoalAnalytics = (data) => {
     goals: goalsProgress,
   };
 };
+

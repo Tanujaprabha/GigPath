@@ -1,3 +1,5 @@
+import { safeDate } from './dateUtils';
+
 let currentCurrency = 'INR';
 let currentLocale = 'en-IN';
 
@@ -24,19 +26,39 @@ export function formatCurrencyCompact(value) {
 }
 
 export function formatDate(value, options = {}) {
-  return new Intl.DateTimeFormat('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-    ...options,
-  }).format(new Date(value))
+  try {
+    const date = safeDate(value);
+    if (!date) {
+      console.warn("Invalid date for formatDate:", value);
+      return "Unknown";
+    }
+    return new Intl.DateTimeFormat('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+      ...options,
+    }).format(date)
+  } catch (error) {
+    console.error("formatDate error", error, value);
+    return "Unknown";
+  }
 }
 
 export function formatMonthLabel(value) {
-  return new Intl.DateTimeFormat('en-US', {
-    month: 'short',
-    year: 'numeric',
-  }).format(new Date(value))
+  try {
+    const date = safeDate(value);
+    if (!date) {
+      console.warn("Invalid month label date:", value);
+      return "Unknown";
+    }
+    return date.toLocaleDateString("en-US", {
+      month: "short",
+      year: "numeric"
+    });
+  } catch (error) {
+    console.error("formatMonthLabel error", error, value);
+    return "Unknown";
+  }
 }
 
 export function formatPercent(value) {
@@ -54,18 +76,25 @@ export function getInitials(name) {
 
 export function formatTimeAgo(dateString) {
   if (!dateString) return '';
-  const date = new Date(dateString);
-  const now = new Date();
-  const seconds = Math.floor((now - date) / 1000);
-  
-  if (seconds < 60) return `${seconds} seconds ago`;
-  const minutes = Math.floor(seconds / 60);
-  if (minutes < 60) return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
-  const hours = Math.floor(minutes / 60);
-  if (hours < 24) return `${hours} hour${hours > 1 ? 's' : ''} ago`;
-  const days = Math.floor(hours / 24);
-  if (days < 30) return `${days} day${days > 1 ? 's' : ''} ago`;
-  const months = Math.floor(days / 30);
-  if (months < 12) return `${months} month${months > 1 ? 's' : ''} ago`;
-  return formatDate(dateString);
+  try {
+    const date = safeDate(dateString);
+    if (!date) return '';
+    const now = new Date();
+    const seconds = Math.floor((now - date) / 1000);
+    
+    if (seconds < 60) return `${seconds} seconds ago`;
+    const minutes = Math.floor(seconds / 60);
+    if (minutes < 60) return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+    const hours = Math.floor(minutes / 60);
+    if (hours < 24) return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+    const days = Math.floor(hours / 24);
+    if (days < 30) return `${days} day${days > 1 ? 's' : ''} ago`;
+    const months = Math.floor(days / 30);
+    if (months < 12) return `${months} month${months > 1 ? 's' : ''} ago`;
+    return formatDate(dateString);
+  } catch (error) {
+    console.error("formatTimeAgo error", error, dateString);
+    return '';
+  }
 }
+

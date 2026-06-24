@@ -50,6 +50,7 @@ import {
 } from '../utils/analytics'
 import { formatCurrency } from '../utils/formatters'
 import { getDashboardAnalytics } from '../analytics/dashboardAnalytics'
+import { safeDate } from '../utils/dateUtils'
 
 const AppContext = createContext(null)
 const SESSION_STORAGE_KEY = 'gigpath-session'
@@ -292,12 +293,58 @@ export function AppProvider({ children }) {
   }, [totals.earningsTotal, totals.expensesTotal, recurringTotal, reservedGoalSavings])
 
   const dashboardAnalytics = useMemo(() => {
+    console.log("Transactions:", transactions);
+    console.log("Goals:", goals);
+    console.log("RecurringExpenses:", recurringExpenses);
+    console.log("Insights:", aiInsights);
+
+    // Validate date fields and warning log for invalid objects
+    transactions.forEach(t => {
+      if (t && t.date !== undefined && t.date !== null && t.date !== "") {
+        if (!safeDate(t.date)) {
+          console.warn("Invalid object skipped:", t);
+        }
+      }
+    });
+
+    goals.forEach(g => {
+      if (g) {
+        if (g.targetDate !== undefined && g.targetDate !== null && g.targetDate !== "") {
+          if (!safeDate(g.targetDate)) {
+            console.warn("Invalid object skipped:", g);
+          }
+        }
+        if (g.deadline !== undefined && g.deadline !== null && g.deadline !== "") {
+          if (!safeDate(g.deadline)) {
+            console.warn("Invalid object skipped:", g);
+          }
+        }
+      }
+    });
+
+    recurringExpenses.forEach(r => {
+      if (r && r.nextCharge !== undefined && r.nextCharge !== null && r.nextCharge !== "") {
+        if (!safeDate(r.nextCharge)) {
+          console.warn("Invalid object skipped:", r);
+        }
+      }
+    });
+
+    aiInsights.forEach(i => {
+      if (i && i.createdAt !== undefined && i.createdAt !== null && i.createdAt !== "") {
+        if (!safeDate(i.createdAt)) {
+          console.warn("Invalid object skipped:", i);
+        }
+      }
+    });
+
     return getDashboardAnalytics({
       transactions,
       recurringExpenses,
       goals,
+      insights: aiInsights,
     })
-  }, [transactions, recurringExpenses, goals])
+  }, [transactions, recurringExpenses, goals, aiInsights])
 
   const spendingAnalytics = dashboardAnalytics.spending
   const savingsAnalytics = dashboardAnalytics.savings
